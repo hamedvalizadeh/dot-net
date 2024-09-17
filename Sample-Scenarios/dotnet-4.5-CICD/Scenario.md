@@ -19,7 +19,7 @@ open visual studio (in this example we used 2022 version) and choose the templat
 
 
 
-![](D:\Tutorial\DotNet\Sample-Scenarios\dotnet-4.5-CICD\1.png)
+![](1.png)
 
 
 
@@ -31,7 +31,7 @@ in visual studio click on `Build` tab and select item `Publish Net45CICD` from t
 
 
 
-![](D:\Tutorial\DotNet\Sample-Scenarios\dotnet-4.5-CICD\2.png) 
+![](2.png) 
 
 
 
@@ -45,7 +45,7 @@ now open `IIS`and create a web site. to do so right click on `Sites` from `Conne
 
 
 
-![](D:\Tutorial\DotNet\Sample-Scenarios\dotnet-4.5-CICD\3.png)
+![](3.png)
 
 
 
@@ -53,7 +53,7 @@ to test the host, browse your Web API in a web browser. in our example its addre
 
 
 
-![](D:\Tutorial\DotNet\Sample-Scenarios\dotnet-4.5-CICD\4.png)
+![](4.png)
 
 ### Add app_offline.htm
 
