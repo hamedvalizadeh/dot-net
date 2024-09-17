@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Sample-Scenarios/dotnet-4.5-CICD/Net45CICD/.vs
+/Sample-Scenarios/dotnet-4.5-CICD/Net45CICD/Net45CICD/bin
+/Sample-Scenarios/dotnet-4.5-CICD/Net45CICD/Net45CICD/obj
