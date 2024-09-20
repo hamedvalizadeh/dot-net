@@ -1,0 +1,65 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  tags:
+    include:
+    - release-*
+
+variables:
+- group: Project Paths
+- name: isPublishSuccessfull
+  value: 0
+
+stages:
+- stage: StopApplication
+  displayName: 'Stop Application'
+  jobs:
+  - job: StopIIS
+    displayName: 'Stop IIS'
+    steps:
+      - powershell: |
+            Copy-Item -Path ".\Net45CICD\IIS_Files\app_offline.htm" -Destination "$(IIS_Folder_Path)"
+        displayName: 'Copy App_OFFLINE'
+
+- stage: PublishDeploy
+  displayName: 'Publish & Deploy'
+  dependsOn:
+  - StopApplication
+  jobs:
+  - job: PublishApplication
+    displayName: 'Publish Application'
+    steps:
+      - checkout: none
+      - powershell: |
+            C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe Net45CICD.sln /p:VisualStudioVersion=11.0 /p:DeployOnBuild=true /p:PublishProfile=..\Net45CICD\Properties\PublishProfiles\FolderProfile.pubxml
+            Write-Host "##vso[task.setvariable variable=isPublishSuccessfull]$LastExitCode"
+        displayName: 'Run BUILD And Publish'
+  - job: DeployApplication
+    displayName: 'Deploy File To IIS'
+    dependsOn:
+    - PublishApplication
+    steps:
+      - checkout: none
+      - powershell: |
+            Copy-item -Force -Recurse -Verbose ".\Net45CICD\bin\app.publish\*" -Destination "$(IIS_Folder_Path)"
+        displayName: 'Deploy File To IIS'
+        condition: eq(variables.isPublishSuccessfull, 0)
+
+- stage: StartApplication
+  displayName: 'Start Application'
+  dependsOn:
+  - PublishDeploy
+  jobs:
+  - job: StartIIS
+    displayName: 'Sart IIS' 
+    steps:
+      - checkout: none
+      - powershell: |
+            $app_offlinePath = "$(IIS_Folder_Path)" + "\app_offline.htm"
+            if (Test-Path "$app_offlinePath") {
+              Remove-Item "$app_offlinePath" -verbose
+            }
+        displayName: 'Delete App_OFFLINE'

@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+Net45CICD/bin
+Net45CICD/obj
+/Net45CICD/Net45CICD.csproj.user
