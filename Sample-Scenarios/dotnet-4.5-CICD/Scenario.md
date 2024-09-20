@@ -273,7 +273,7 @@ git push
 
 ### Create Pipeline
 
-now every thing seems to be ready to create the pipeline in Azure DevOps panel to handle the CI/CD task we desire. to do so, first of all navigate to the project `Net45CICD` in Azure DevOps panel, from the left pane click on `Pipeline` then on `Library`. in the opened page click on the `+ Variable Group`; in the opened page enter `Project Paths` for the field `Variable group name` and and then under `Variables` section click on `+ Add` button and in the field Name enter `IIS_Folder_Path` and and in the files `Value` enter `C:\inetpub\wwwroot\Net45CICDHost`, and finally click on `Save` button. 
+now every thing seems to be ready to create the pipeline in Azure DevOps panel to handle the CI/CD task we desire. to do so, first of all navigate to the project `Net45CICD` in Azure DevOps panel, from the left pane click on `Pipeline` then on `Library`. in the opened page click on the `+ Variable Group`; in the opened page enter `Project Paths` for the field `Variable group name` and and then under `Variables` section click on `+ Add` button and in the field Name enter `IIS_Folder_Path` and and in the field `Value` enter `C:\inetpub\wwwroot\Net45CICDHost`, and finally click on `Save` button. 
 
 ![](6.png)
 
